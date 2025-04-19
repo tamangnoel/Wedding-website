@@ -11,8 +11,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Esther & Noel - Wedding Website",
-  description: "Join us in celebrating our special day",
-    generator: 'v0.dev'
+  description: "Join us in celebrating our special day"
 }
 
 export default function RootLayout({
@@ -21,9 +20,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+          storageKey="wedding-theme"
+        >
           <PasswordProtection>
             <div className="min-h-screen flex flex-col">
               <Navbar />
