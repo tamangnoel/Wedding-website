@@ -6,19 +6,38 @@ import { Button } from "@/components/ui/button"
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="relative h-[80vh] w-full overflow-hidden">
-        <div className="absolute inset-0 bg-black/30 z-10" />
-        <Image
-          src="/placeholder.svg?height=1080&width=1920"
-          alt="Wedding couple"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center text-white p-4">
-          <h1 className="font-serif text-5xl md:text-7xl mb-4">Esther & Noel</h1>
-          <p className="text-xl md:text-2xl mb-8">June 15, 2025 • San Francisco, CA</p>
-          <div className="flex flex-col sm:flex-row gap-4">
+      <header className="relative h-[100vh] w-full overflow-hidden flex items-center justify-center">
+        <div className="absolute inset-0 bg-black/50 z-10" />
+        {/* Portrait Image */}
+        <div className="absolute inset-0 [@media(max-aspect-ratio:3/4)]:block [@media(min-aspect-ratio:3/4)]:hidden">
+          <Image
+            src="/images/home/home_vertical.jpg"
+            alt="Wedding couple - Portrait"
+            fill
+            sizes="100vw"
+            className="object-contain"
+            priority
+            quality={100}
+          />
+        </div>
+        {/* Landscape Image */}
+        <div className="absolute inset-0 [@media(max-aspect-ratio:3/4)]:hidden [@media(min-aspect-ratio:3/4)]:block">
+          <Image
+            src="/images/home/home_horizontal.jpg"
+            alt="Wedding couple - Landscape"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+            quality={100}
+          />
+        </div>
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center text-white p-4 [@media(max-aspect-ratio:3/4)]:translate-y-[-20%]">
+          <h1 className="font-serif mb-4 
+            text-[min(8vw,4rem)] [@media(min-aspect-ratio:3/4)]:text-[min(5vw,5rem)]">Esther & Noel</h1>
+          <p className="mb-8 
+            text-[min(4vw,1.5rem)] [@media(min-aspect-ratio:3/4)]:text-[min(2.5vw,2rem)]">April 10, 2026 • Lancaster, PA</p>
+          <div className="flex flex-col [@media(min-aspect-ratio:3/4)]:flex-row gap-4">
             <Button asChild size="lg" className="text-lg">
               <Link href="/rsvp">RSVP Now</Link>
             </Button>
