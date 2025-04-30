@@ -1,23 +1,23 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   const closeMenu = () => {
-    setIsOpen(false)
-  }
+    setIsOpen(false);
+  };
 
   return (
     <nav className="bg-background/80 backdrop-blur-md sticky top-0 z-40 w-full border-b border-border">
@@ -43,6 +43,9 @@ export default function Navbar() {
           <NavLink href="/registry" onClick={closeMenu}>
             Registry
           </NavLink>
+          <NavLink href="/event-gallary" onClick={closeMenu}>
+            Event-Gallary
+          </NavLink>
           <NavLink href="/faq" onClick={closeMenu}>
             FAQ
           </NavLink>
@@ -52,14 +55,25 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Navigation Toggle */}
-        <Button variant="ghost" size="icon" onClick={toggleMenu} className="md:hidden">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={toggleMenu}
+          className="md:hidden"
+        >
           {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </Button>
       </div>
 
       {/* Mobile Navigation Menu */}
-      <div className={cn("fixed inset-0 z-50 bg-background pt-16 px-4", isOpen ? "flex flex-col" : "hidden")}>
-        <div className="flex flex-col space-y-4">
+      {/* small changes to children className to fix transparent background */}
+      <div
+        className={cn(
+          "fixed inset-0 z-50 bg-background pt-16",
+          isOpen ? "flex flex-col" : "hidden"
+        )}
+      >
+        <div className="flex flex-col space-y-4 bg-pink-200 px-4 border">
           <NavLink href="/" onClick={closeMenu}>
             Home
           </NavLink>
@@ -75,6 +89,9 @@ export default function Navbar() {
           <NavLink href="/registry" onClick={closeMenu}>
             Registry
           </NavLink>
+          <NavLink href="/event-gallary" onClick={closeMenu}>
+            Event-Gallary
+          </NavLink>
           <NavLink href="/faq" onClick={closeMenu}>
             FAQ
           </NavLink>
@@ -83,10 +100,11 @@ export default function Navbar() {
               RSVP
             </Link>
           </Button>
+          <br /> {/*newline */}
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
 function NavLink({
@@ -94,14 +112,17 @@ function NavLink({
   children,
   onClick,
 }: {
-  href: string
-  children: React.ReactNode
-  onClick?: () => void
+  href: string;
+  children: React.ReactNode;
+  onClick?: () => void;
 }) {
   return (
-    <Link href={href} className="text-foreground/70 hover:text-foreground transition-colors py-2" onClick={onClick}>
+    <Link
+      href={href}
+      className="text-foreground/70 hover:text-foreground transition-colors py-2"
+      onClick={onClick}
+    >
       {children}
     </Link>
-  )
+  );
 }
-
