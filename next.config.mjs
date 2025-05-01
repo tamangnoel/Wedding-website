@@ -7,20 +7,32 @@ try {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+      },
+    ],
+  },
+  
   eslint: {
     ignoreDuringBuilds: true,
   },
   typescript: {
     ignoreBuildErrors: true,
   },
-  images: {
-    unoptimized: true,
-  },
   experimental: {
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+
+  //Only for smart phone access testing
+  // Remove ip address after testing is done
+  
+  //allowedDevOrigins: ['http://ip_address:3000'],
 }
 
 mergeConfig(nextConfig, userConfig)

@@ -1,40 +1,46 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Textarea } from "@/components/ui/textarea"
-import { toast } from "@/hooks/use-toast"
-import { ColorPicker } from "@/components/color-picker"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "@/hooks/use-toast";
+import { ColorPicker } from "@/components/color-picker";
 
 export default function AdminPage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [password, setPassword] = useState("")
-  const [passwordError, setPasswordError] = useState("")
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // Demo password for the admin section
     if (password === "admin123") {
-      setIsLoggedIn(true)
-      setPasswordError("")
+      setIsLoggedIn(true);
+      setPasswordError("");
     } else {
-      setPasswordError("Incorrect password. Please try again.")
+      setPasswordError("Incorrect password. Please try again.");
     }
-  }
+  };
 
   const handleSave = () => {
     toast({
       title: "Changes Saved",
       description: "Your changes have been saved successfully.",
-    })
-  }
+    });
+  };
 
   if (!isLoggedIn) {
     return (
@@ -42,7 +48,9 @@ export default function AdminPage() {
         <Card>
           <CardHeader>
             <CardTitle>Admin Login</CardTitle>
-            <CardDescription>Enter your password to access the admin panel</CardDescription>
+            <CardDescription>
+              Enter your password to access the admin panel
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleLogin}>
@@ -56,8 +64,12 @@ export default function AdminPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter password"
                   />
-                  {passwordError && <p className="text-sm text-destructive">{passwordError}</p>}
-                  <p className="text-xs text-muted-foreground">For demo purposes, use: "admin123"</p>
+                  {passwordError && (
+                    <p className="text-sm text-destructive">{passwordError}</p>
+                  )}
+                  <p className="text-xs text-muted-foreground">
+                    For demo purposes, use: "admin123"
+                  </p>
                 </div>
                 <Button type="submit" className="w-full">
                   Login
@@ -67,7 +79,7 @@ export default function AdminPage() {
           </CardContent>
         </Card>
       </div>
-    )
+    );
   }
 
   return (
@@ -99,7 +111,10 @@ export default function AdminPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="wedding-location">Wedding Location</Label>
-                  <Input id="wedding-location" defaultValue="San Francisco, CA" />
+                  <Input
+                    id="wedding-location"
+                    defaultValue="San Francisco, CA"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="banner-image">Banner Image</Label>
@@ -175,16 +190,37 @@ export default function AdminPage() {
                   <Label>Registry Links</Label>
                   <div className="space-y-4">
                     <div className="grid grid-cols-3 gap-4">
-                      <Input placeholder="Store Name" defaultValue="Crate & Barrel" />
-                      <Input placeholder="URL" defaultValue="https://www.crateandbarrel.com" className="col-span-2" />
+                      <Input
+                        placeholder="Store Name"
+                        defaultValue="Crate & Barrel"
+                      />
+                      <Input
+                        placeholder="URL"
+                        defaultValue="https://www.crateandbarrel.com"
+                        className="col-span-2"
+                      />
                     </div>
                     <div className="grid grid-cols-3 gap-4">
-                      <Input placeholder="Store Name" defaultValue="Williams-Sonoma" />
-                      <Input placeholder="URL" defaultValue="https://www.williams-sonoma.com" className="col-span-2" />
+                      <Input
+                        placeholder="Store Name"
+                        defaultValue="Williams-Sonoma"
+                      />
+                      <Input
+                        placeholder="URL"
+                        defaultValue="https://www.williams-sonoma.com"
+                        className="col-span-2"
+                      />
                     </div>
                     <div className="grid grid-cols-3 gap-4">
-                      <Input placeholder="Store Name" defaultValue="Pottery Barn" />
-                      <Input placeholder="URL" defaultValue="https://www.potterybarn.com" className="col-span-2" />
+                      <Input
+                        placeholder="Store Name"
+                        defaultValue="Pottery Barn"
+                      />
+                      <Input
+                        placeholder="URL"
+                        defaultValue="https://www.potterybarn.com"
+                        className="col-span-2"
+                      />
                     </div>
                     <Button variant="outline" className="w-full">
                       + Add Registry
@@ -202,7 +238,9 @@ export default function AdminPage() {
           <Card>
             <CardHeader>
               <CardTitle>Theme Colors</CardTitle>
-              <CardDescription>Customize the colors of your wedding website</CardDescription>
+              <CardDescription>
+                Customize the colors of your wedding website
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
@@ -228,10 +266,18 @@ export default function AdminPage() {
                 <div className="space-y-2">
                   <Label>Preview</Label>
                   <div className="p-4 border rounded-md">
-                    <div className="p-4 bg-primary rounded-md text-primary-foreground mb-2">Primary Color</div>
-                    <div className="p-4 bg-secondary rounded-md text-secondary-foreground mb-2">Secondary Color</div>
-                    <div className="p-4 bg-background rounded-md text-foreground border mb-2">Background & Text</div>
-                    <div className="p-4 bg-muted rounded-md text-muted-foreground">Muted Background & Text</div>
+                    <div className="p-4 bg-primary rounded-md text-primary-foreground mb-2">
+                      Primary Color
+                    </div>
+                    <div className="p-4 bg-secondary rounded-md text-secondary-foreground mb-2">
+                      Secondary Color
+                    </div>
+                    <div className="p-4 bg-background rounded-md text-foreground border mb-2">
+                      Background & Text
+                    </div>
+                    <div className="p-4 bg-muted rounded-md text-muted-foreground">
+                      Muted Background & Text
+                    </div>
                   </div>
                 </div>
 
@@ -243,7 +289,9 @@ export default function AdminPage() {
           <Card>
             <CardHeader>
               <CardTitle>Fonts</CardTitle>
-              <CardDescription>Customize the typography of your wedding website</CardDescription>
+              <CardDescription>
+                Customize the typography of your wedding website
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -278,15 +326,28 @@ export default function AdminPage() {
           <Card>
             <CardHeader>
               <CardTitle>Page Layout</CardTitle>
-              <CardDescription>Customize which pages are visible and their order</CardDescription>
+              <CardDescription>
+                Customize which pages are visible and their order
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div className="space-y-2">
                   <Label>Enabled Pages</Label>
                   <div className="space-y-2">
-                    {["Home", "Details", "Our Story", "Travel", "Registry", "FAQ", "RSVP"].map((page) => (
-                      <div key={page} className="flex items-center justify-between p-2 border rounded-md">
+                    {[
+                      "Home",
+                      "Details",
+                      "Our Story",
+                      "Travel",
+                      "Registry",
+                      "FAQ",
+                      "RSVP",
+                    ].map((page) => (
+                      <div
+                        key={page}
+                        className="flex items-center justify-between p-2 border rounded-md"
+                      >
                         <span>{page}</span>
                         <div className="flex items-center gap-2">
                           <Button variant="ghost" size="sm">
@@ -347,48 +408,94 @@ export default function AdminPage() {
                   <table className="min-w-full divide-y divide-border">
                     <thead className="bg-muted">
                       <tr>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                        >
                           Name
                         </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                        >
                           RSVP
                         </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                        >
                           Guests
                         </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                        >
                           Meal Choice
                         </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                        >
                           Actions
                         </th>
                       </tr>
                     </thead>
                     <tbody className="bg-card divide-y divide-border">
                       {[
-                        { name: "Esther Smith", rsvp: "Yes", guests: 2, meal: "Beef Tenderloin" },
-                        { name: "Sarah Johnson", rsvp: "Yes", guests: 1, meal: "Vegetarian" },
-                        { name: "Noel Smith", rsvp: "No", guests: 0, meal: "-" },
-                        { name: "Lisa Davis", rsvp: "Yes", guests: 3, meal: "Salmon" },
-                        { name: "David Wilson", rsvp: "Pending", guests: 2, meal: "-" },
+                        {
+                          name: "Esther Smith",
+                          rsvp: "Yes",
+                          guests: 2,
+                          meal: "Beef Tenderloin",
+                        },
+                        {
+                          name: "Sarah Johnson",
+                          rsvp: "Yes",
+                          guests: 1,
+                          meal: "Vegetarian",
+                        },
+                        {
+                          name: "Noel Smith",
+                          rsvp: "No",
+                          guests: 0,
+                          meal: "-",
+                        },
+                        {
+                          name: "Lisa Davis",
+                          rsvp: "Yes",
+                          guests: 3,
+                          meal: "Salmon",
+                        },
+                        {
+                          name: "David Wilson",
+                          rsvp: "Pending",
+                          guests: 2,
+                          meal: "-",
+                        },
                       ].map((guest, i) => (
                         <tr key={i}>
-                          <td className="px-6 py-4 whitespace-nowrap">{guest.name}</td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            {guest.name}
+                          </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <span
                               className={`inline-flex rounded-full px-2 text-xs font-semibold ${
                                 guest.rsvp === "Yes"
                                   ? "bg-green-100 text-green-800"
                                   : guest.rsvp === "No"
-                                    ? "bg-red-100 text-red-800"
-                                    : "bg-yellow-100 text-yellow-800"
+                                  ? "bg-red-100 text-red-800"
+                                  : "bg-yellow-100 text-yellow-800"
                               }`}
                             >
                               {guest.rsvp}
                             </span>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap">{guest.guests}</td>
-                          <td className="px-6 py-4 whitespace-nowrap">{guest.meal}</td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            {guest.guests}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            {guest.meal}
+                          </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <Button variant="ghost" size="sm">
                               Edit
@@ -418,31 +525,51 @@ export default function AdminPage() {
           <Card>
             <CardHeader>
               <CardTitle>RSVP Settings</CardTitle>
-              <CardDescription>Configure your RSVP form settings</CardDescription>
+              <CardDescription>
+                Configure your RSVP form settings
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="rsvp-deadline">RSVP Deadline</Label>
-                  <Input id="rsvp-deadline" type="date" defaultValue="2025-05-01" />
+                  <Input
+                    id="rsvp-deadline"
+                    type="date"
+                    defaultValue="2025-05-01"
+                  />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="max-guests">Maximum Guests Per Invitation</Label>
-                  <Input id="max-guests" type="number" defaultValue="4" min="1" max="10" />
+                  <Label htmlFor="max-guests">
+                    Maximum Guests Per Invitation
+                  </Label>
+                  <Input
+                    id="max-guests"
+                    type="number"
+                    defaultValue="4"
+                    min="1"
+                    max="10"
+                  />
                 </div>
 
                 <div className="space-y-2">
                   <Label>Meal Options</Label>
                   <div className="space-y-2">
                     <div className="flex gap-2">
-                      <Input defaultValue="Beef Tenderloin" className="flex-1" />
+                      <Input
+                        defaultValue="Beef Tenderloin"
+                        className="flex-1"
+                      />
                       <Button variant="outline" size="icon">
                         X
                       </Button>
                     </div>
                     <div className="flex gap-2">
-                      <Input defaultValue="Roasted Chicken" className="flex-1" />
+                      <Input
+                        defaultValue="Roasted Chicken"
+                        className="flex-1"
+                      />
                       <Button variant="outline" size="icon">
                         X
                       </Button>
@@ -454,7 +581,10 @@ export default function AdminPage() {
                       </Button>
                     </div>
                     <div className="flex gap-2">
-                      <Input defaultValue="Vegetarian Option" className="flex-1" />
+                      <Input
+                        defaultValue="Vegetarian Option"
+                        className="flex-1"
+                      />
                       <Button variant="outline" size="icon">
                         X
                       </Button>
@@ -472,7 +602,9 @@ export default function AdminPage() {
                     className="h-4 w-4 rounded border-gray-300"
                     defaultChecked
                   />
-                  <Label htmlFor="collect-dietary">Collect Dietary Restrictions</Label>
+                  <Label htmlFor="collect-dietary">
+                    Collect Dietary Restrictions
+                  </Label>
                 </div>
 
                 <Button onClick={handleSave}>Save RSVP Settings</Button>
@@ -482,6 +614,5 @@ export default function AdminPage() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
-
