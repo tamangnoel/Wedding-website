@@ -44,7 +44,7 @@ export default function Navbar() {
             Registry
           </NavLink>
           <NavLink href="/event-gallary" onClick={closeMenu}>
-            Event-Gallary
+            Event-Gallery
           </NavLink>
           <NavLink href="/faq" onClick={closeMenu}>
             FAQ

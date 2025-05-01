@@ -83,8 +83,11 @@ export default function EventGalleryPage() {
         </h2>
 
         <p className="font-serif text-center text-xl mb-8">
-          Capture memories, upload your favorite moments, and download them
-          anytime!
+          A space where cherished memories come to life. Here, you can capture
+          special moments, upload your favorite photographs, and revisit them
+          anytime. Whether it’s a celebration, a candid shot, or a meaningful
+          occasion, this gallery lets you preserve, share, and download your
+          memories with ease.
         </p>
 
         {/* Upload and Camera Buttons */}
@@ -107,6 +110,7 @@ export default function EventGalleryPage() {
                   <Image
                     src={photo.url}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     alt="Uploaded Photo"
                     className="object-cover hover:scale-105 transition-transform"
                   />
